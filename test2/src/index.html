@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Critical Shift</title>
+    <link href="./output.css" rel="stylesheet" />
+    <!-- Import Lottie player library -->
+    <script src="/src/lottieRunner.js"></script>
+    <!-- Import our JavaScript file -->
+    <script src="./index.js" defer></script>
+    <style>
+      /* Custom styling for progress bar and controls */
+      .progress-container {
+        width: 100%;
+        height: 24px;
+        background-color: #eee;
+        border-radius: 12px;
+        position: relative;
+        cursor: pointer;
+        margin-bottom: 12px;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background-color: #10b981;
+        border-radius: 12px;
+        width: 0%;
+        transition: width 0.1s;
+      }
+
+      .scrubber {
+        width: 24px;
+        height: 24px;
+        background-color: #10b981;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-left: -12px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        cursor: grab;
+      }
+
+      .scrubber:active {
+        cursor: grabbing;
+      }
+
+      .toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #3b82f6;
+        border: none;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .toggle-btn:hover {
+        background-color: #2563eb;
+      }
+
+      .toggle-btn i {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header
+      class="grid md:grid-cols-1 px4 py-4 border-b-2 border-slate-700 bg-black"
+    >
+      <div
+        class="container mx-auto flex justify-between items-center max-w-4xl"
+      >
+        <!-- Three logos with equal spacing -->
+        <div class="flex justify-between items-center w-full">
+          <img
+            src="/logos/DTI_logo.webp"
+            alt="Arrowhead Logo"
+            class="h-10 w-auto"
+          />
+          <img src="/logos/kform_logo.png" alt="DTI Logo" class="h-10 w-auto" />
+          <img
+            src="/logos/critical_shift_white_transparent.png"
+            alt="KForm Logo"
+            class="h-10 w-auto"
+          />
+        </div>
+      </div>
+    </header>
+
+    <main
+      class="container max-w-4xl mx-auto p-6 pt-8 bg-slate-50"
+      style="max-width: 960px"
+    >
+      <!-- Scenario 1 -->
+      <div class="mb-16">
+        <h2 class="text-2xl font-bold mb-3">Scenario 1</h2>
+        <div id="animation1" class="w-full h-96 mb-4"></div>
+        <div class="progress-container" id="progress1">
+          <div class="progress-bar" id="progress-bar1"></div>
+          <div class="scrubber" id="scrubber1"></div>
+        </div>
+        <div class="flex items-center space-x-2 mb-4">
+          <button id="toggle1" class="toggle-btn" aria-label="Play/Pause">
+            ▶
+          </button>
+          <span id="time-display1" class="text-sm text-gray-600"
+            >0:00 / 0:00</span
+          >
+        </div>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <p class="text-gray-800">
+            Data from sensors transiting back to command center (Nexus)
+          </p>
+        </div>
+      </div>
+
+      <!-- Scenario 2 -->
+      <div class="mb-16">
+        <h2 class="text-2xl font-bold mb-3">Scenario 2</h2>
+        <div id="animation2" class="w-full h-96 mb-4"></div>
+        <div class="progress-container" id="progress2">
+          <div class="progress-bar" id="progress-bar2"></div>
+          <div class="scrubber" id="scrubber2"></div>
+        </div>
+        <div class="flex items-center space-x-2 mb-4">
+          <button id="toggle2" class="toggle-btn" aria-label="Play/Pause">
+            ▶
+          </button>
+          <span id="time-display2" class="text-sm text-gray-600"
+            >0:00 / 0:00</span
+          >
+        </div>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <p class="text-gray-800">
+            ATAK Clients communicating through ATAK Server in Command Center
+          </p>
+        </div>
+      </div>
+
+      <!-- Scenario 3 -->
+      <div class="mb-16">
+        <h2 class="text-2xl font-bold mb-3">Scenario 3</h2>
+        <div id="animation3" class="w-full h-96 mb-4"></div>
+        <div class="progress-container" id="progress3">
+          <div class="progress-bar" id="progress-bar3"></div>
+          <div class="scrubber" id="scrubber3"></div>
+        </div>
+        <div class="flex items-center space-x-2 mb-4">
+          <button id="toggle3" class="toggle-btn" aria-label="Play/Pause">
+            ▶
+          </button>
+          <span id="time-display3" class="text-sm text-gray-600"
+            >0:00 / 0:00</span
+          >
+        </div>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <p class="text-gray-800">
+            Command Center monitors all sensors, and alerts all subscribed
+            clients
+          </p>
+        </div>
+      </div>
+
+      <!-- Scenario 4 -->
+      <div class="mb-16">
+        <h2 class="text-2xl font-bold mb-3">Scenario 4</h2>
+        <div id="animation4" class="w-full h-96 mb-4"></div>
+        <div class="progress-container" id="progress4">
+          <div class="progress-bar" id="progress-bar4"></div>
+          <div class="scrubber" id="scrubber4"></div>
+        </div>
+        <div class="flex items-center space-x-2 mb-4">
+          <button id="toggle4" class="toggle-btn" aria-label="Play/Pause">
+            ▶
+          </button>
+          <span id="time-display4" class="text-sm text-gray-600"
+            >0:00 / 0:00</span
+          >
+        </div>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <p class="text-gray-800">
+            An alert is sent to users when a specific license plate is
+            recognized
+          </p>
+        </div>
+      </div>
+
+      <!-- Scenario 5 -->
+      <div class="mb-16">
+        <h2 class="text-2xl font-bold mb-3">Scenario 5</h2>
+        <div id="animation5" class="w-full h-96 mb-4"></div>
+        <div class="progress-container" id="progress5">
+          <div class="progress-bar" id="progress-bar5"></div>
+          <div class="scrubber" id="scrubber5"></div>
+        </div>
+        <div class="flex items-center space-x-2 mb-4">
+          <button id="toggle5" class="toggle-btn" aria-label="Play/Pause">
+            ▶
+          </button>
+          <span id="time-display5" class="text-sm text-gray-600"
+            >0:00 / 0:00</span
+          >
+        </div>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <p class="text-gray-800">
+            When vibration is detected, users are alerted and can stream video
+            from nearby camera
+          </p>
+        </div>
+      </div>
+
+      <!-- Scenario 6 -->
+      <div class="mb-16">
+        <h2 class="text-2xl font-bold mb-3">Scenario 6</h2>
+        <div id="animation6" class="w-full h-96 mb-4"></div>
+        <div class="progress-container" id="progress6">
+          <div class="progress-bar" id="progress-bar6"></div>
+          <div class="scrubber" id="scrubber6"></div>
+        </div>
+        <div class="flex items-center space-x-2 mb-4">
+          <button id="toggle6" class="toggle-btn" aria-label="Play/Pause">
+            ▶
+          </button>
+          <span id="time-display6" class="text-sm text-gray-600"
+            >0:00 / 0:00</span
+          >
+        </div>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <p class="text-gray-800">
+            When a node leaves the mesh, devices can reconnect to another nearby
+            node to ensure connectivity
+          </p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
